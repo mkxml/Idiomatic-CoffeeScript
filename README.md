@@ -2,7 +2,7 @@ Idiomatic-CoffeeScript
 ======================
 
 Purpose
-=======
+-------
 
 Idiomatic CoffeeScript is a set of best practices in CoffeeScript programming. This project is inspired
 in Idiomatic JavaScript by @rwldrn.
@@ -17,7 +17,7 @@ Important: In order to make this guide simple to follow it doesn't offer options
 fork this guide and customize it to fit your tools and style.
 
 How to use
-==========
+----------
 
 Link this document refering it as the style guide for your project, so anyone know how you code.
 The styling guide should be the first thing you define in your project, after it is done everything must be based on it.
@@ -38,15 +38,15 @@ Basics
 
 Example:
 	
-	```coffeescript
+  ```coffeescript
 
-	add = (num1, num2) ->
-		num1 + num2
-  
+  add = (num1, num2) ->
+    num1 + num2
+
   result = add 1,2
 
   #Breaking line because string has more than 72 characters
   string = "We performed a sum between 1 and 2 and the result
    is #{result}"
 
-	```
+  ```
