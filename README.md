@@ -1,8 +1,6 @@
-Idiomatic-CoffeeScript
-======================
+# Idiomatic-CoffeeScript
 
-Purpose
--------
+## Purpose
 
 Idiomatic CoffeeScript is a set of best practices in CoffeeScript programming. This project is inspired
 in Idiomatic JavaScript by @rwldrn.
@@ -16,17 +14,14 @@ and that's absolutely true. So this guide purpose is to apply that concept in Co
 Important: In order to make this guide simple to follow it doesn't offer options and paths as the Idiomatic JavaScript does, if you want you can
 fork this guide and customize it to fit your tools and style.
 
-How to use
-----------
+## How to use
 
 Link this document refering it as the style guide for your project, so anyone know how you code.
 The styling guide should be the first thing you define in your project, after it is done everything must be based on it.
 
-Style guide
-===========
+## Style guide
 
-Basics
-------
+### Basics
 
 1. Regarding line writing
 	- Use 2 spaces to indent, you can also convert tabs into 2 spaces (Sublime Text 2 and other code editors allows this);
