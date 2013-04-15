@@ -19,12 +19,12 @@ fork this guide and customize it to fit your tools and style.
 Link this document refering it as the style guide for your project, so anyone know how you code.
 The styling guide should be the first thing you define in your project, after it is done everything must be based on it.
 
-## Remember what is CoffeeScript
+## Remember what CoffeeScript is
 
 Always remember: CoffeeScript is just JavaScript. It is not a new language, it is just a cool tool you can use to improve readability of your code.
 You should use it wisely otherwise you could end up generating terrible JS. This guide will help you get an idea of the path you need to follow to get the most out of CoffeeScript.
 
-Reading [this article](https://github.com/raganwald/homoiconic/blob/master/2011/12/jargon.md) is strongly recommended to get an idea on what CoffeeScript is. Also, this guide assumes that you already know you to use CoffeeScript. If you are a rookie please skip to [this section](#learning) where there are some CoffeeScript learning resources. This clarified we can proceed with the guide.
+Reading [this article](https://github.com/raganwald/homoiconic/blob/master/2011/12/jargon.md) is strongly recommended to get an idea on what CoffeeScript is. Also, this guide assumes that you already know you to use CoffeeScript. If you are a rookie please skip to [this section](#the-best-learning-resources) where there are some CoffeeScript learning resources. This clarified we can proceed with the guide.
 
 ## Style guide
 
@@ -132,7 +132,7 @@ Example:
   * Do everything important in this process: lint, test, compile to JS, minify JS, etc;
   * It is strongly recommended the use of a continuous integration server, [Travis CI](https://travis-ci.org/) is an excellent option if you use GitHub.
 
-## <a name="learning">The best learning resources</a>
+## The best learning resources
 
 Learning more about CoffeeScript is always nice, here are listed some great resources to get started with CoffeeScript or, if you are already experienced with it you can learn some good tips and tricks you can use in your code.
 
