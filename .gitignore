@@ -1,3 +1,4 @@
 #Ignoring system files
 .DS_Store
 Thumbs.db
+.Spotlight-V100
