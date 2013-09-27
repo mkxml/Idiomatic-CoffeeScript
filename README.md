@@ -131,7 +131,80 @@ Example:
   * Use [Grunt](http://gruntjs.com/) to setup your build process;
   * Do everything important in this process: lint, test, compile to JS, minify JS, etc;
   * It is strongly recommended the use of a continuous integration server, [Travis CI](https://travis-ci.org/) is an excellent option if you use GitHub.
-  
+
+Example:
+
+  ```coffeescript
+  ###
+    Example class Car
+    Author: Matheus R. Kautzmann
+  ###
+
+  class Car
+
+    #Instance properties
+
+    #Default brand
+    brand: "Other"
+
+    #Car start at distance 0
+    distance: 0
+
+    #Default year
+    year: 2013
+
+    #Air Conditioner is off by default
+    airConditioner: off
+
+    #Color is white by default
+    color: "White"
+
+    #Class properties
+
+    @possibleBrands: [
+      "Audi"
+      "Mercedes"
+      "BMW"
+      "Ferrari"
+      "Lamborghini"
+      "Volvo"
+      "Fiat"
+      "GMC"
+      "Toyota"
+      "Nissan"
+      "Renault"
+      "Other"
+    ]
+
+    #Class methods
+
+    @currentYear: ->
+      actualDate = new Date()
+      actualYear = actualDate.getFullYear()
+      actualYear + 1
+
+    #Constructor
+    constructor: (brand, model, year, color) ->
+      @brand = brand if brand in Car.possibleBrands
+      @model = model
+      @paint(color)
+      @year = year if year <= Car.currentYear()
+
+    #Instance methods
+
+    move: (distance) ->
+      if distance? then @distance += distance
+
+    paint: (color) ->
+      @color = color if color?
+
+    toggleAirConditioner: ->
+      if airConditioner
+        airConditioner = off
+      else
+        airConditioner = on
+
+  ```  
 
 ## The best learning resources
 
