@@ -155,17 +155,18 @@ Example:
 
     #Class methods
 
-    @currentYear: ->
+    @currentModelYear: ->
       actualDate = new Date()
       actualYear = actualDate.getFullYear()
+      #Implicit return statement
       actualYear + 1
 
     #Constructor
     constructor: (brand, model, year, color) ->
       @brand = brand if brand in Car.possibleBrands
       @model = model
-      @paint(color)
-      @year = year if year <= Car.currentYear()
+      @paint color
+      @year = year if year <= Car.currentModelYear()
 
     #Instance methods
 
