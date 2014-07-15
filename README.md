@@ -59,7 +59,7 @@ Example:
 
   result = add 1,2
 
-  #Breaking line because string has more than 79 characters
+  #Breaking line because string has more than 80 characters
   string = "We performed a sum between 1 and 2 and the result
    is #{result}"
   ```
