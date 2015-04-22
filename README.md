@@ -3,28 +3,28 @@
 ## Purpose
 
 Idiomatic CoffeeScript is a set of best practices in CoffeeScript programming. This project is inspired
-in [Idiomatic JavaScript](https://github.com/rwldrn/idiomatic.js/) by [@rwaldron](https://github.com/rwaldron).
+in [Idiomatic JavaScript](https://github.com/rwaldron/idiomatic.js/) by [@rwaldron](https://github.com/rwaldron).
 
 This also serve as a programming style guide, which is useful for team development,
 so everyone can code in the same fashion.
 
-As said on the Idiomatic JavaScript: "All code in any code-base should look like a single person typed it, no matter how many people contributed",
-and that's absolutely true. So this guide purpose is to apply that concept in CoffeeScript codes.
+As said on the Idiomatic JavaScript document: "All code in any code-base should look like a single person typed it, no matter how many people contributed",
+and that's absolutely true. So this guide's purpose is to apply that concept in CoffeeScript as well.
 
-Important: In order to make this guide simple to follow it doesn't offer options and paths as the Idiomatic JavaScript does, if you want you can
+Important: In order to make this guide simple to follow it doesn't offer options and paths as the Idiomatic JavaScript does, if you want to create new rules or change stuff you can
 fork this guide and customize it to fit your tools and style.
 
 ## How to use
 
-Link this document refering it as the style guide for your project, so anyone know how you code.
+Link this document mentioning it as the style guide for your project, so everybody know how you code.
 The styling guide should be the first thing you define in your project, after it is done everything must be based on it.
 
 ## Remember what CoffeeScript is
 
-Always remember: CoffeeScript is just JavaScript. It is not a new language, it is just a cool tool you can use to improve productivity and the readability of your code.
+Always remember: CoffeeScript is just JavaScript. It is not an entirely new language, it is just a cool tool you can use to improve productivity and the readability of your code.
 You should use it wisely otherwise you could end up generating terrible JS. This guide will help you get an idea of the path you need to follow to get the most out of CoffeeScript.
 
-Reading [this article](https://github.com/raganwald/homoiconic/blob/master/2011/12/jargon.md) is strongly recommended to get an idea on what CoffeeScript is. Also, this guide assumes that you already know you to use CoffeeScript. If you are a rookie please skip to [this section](#the-best-learning-resources) which have some great CoffeeScript learning resources. This clarified we can proceed with the guide.
+Reading [this article](https://github.com/raganwald/homoiconic/blob/master/2011/12/jargon.md) is strongly recommended to get an idea on what CoffeeScript is. Also, this guide assumes that you already know you to use CoffeeScript. If you are a rookie please skip to [this section](#the-best-learning-resources). Important stuff clarified we can proceed with the guide.
 
 ## Style guide
 
@@ -33,57 +33,93 @@ Your focus is on readability, better readability than JavaScript while writing l
 So this guide's job is to put together some tips that will help you achieve that.
 
 ### 1. Regarding line writing:
-  * Use 2 spaces to indent (soft tabs), most editors enable you to convert tabs into spaces;
-  * The maximum line length is 80 characters, long lines compromise readability;
-  * Don't leave trailing spaces. Again, you editor can help with this;
-  * Use one blank line to separate functions;
-  * Use one blank line to separate properties within a Class;
-  * Leave one blank line at the end of the code;
-  * Don't use blank lines to separate lines within the same function.
+  * Use **2 spaces** to indent, most editors enable you to convert tabs into spaces;
+  * The maximum line length is **80 characters**, long lines compromise readability;
+  * **Don't** leave **trailing spaces**. Again, you editor can help with that matter;
+  * Use **one** blank line to separate function declarations;
+  * Use **one** blank line to separate properties within a `Class`;
+  * Leave **one** blank line at the **end** of the **code** in each file;
+  * **Don't** use blank lines to separate lines within the same function.
 
 ### 2. Regarding string usage:
-  * Always use double quotes in strings;
-  * Break long strings, CoffeeScript supports multi-line strings;
-  * Use CoffeeScript string interpolation instead of concatenation.
+  * Always use double quotes `"` in strings, everywhere;
+  * Break long strings, respecting the 80 characters max rule, CoffeeScript supports multi-line strings;
+  * Use CoffeeScript's string interpolation instead of concatenation with `+`.
 
 ### 3. Regarding comments:
-  * Use single line (#) comments most of the time;
-  * Just use multi line comments (###) on the header which contains information about the file.
+  * Use **single line** `#` comments most of the time;
+  * **Only** use multi line comments `###` on the header which contains information about the file.
+  * Use **one space** after the single `#` symbol before starting the comment sentence, this improves readability.
+  * When using external **automatic documentation** software you may override this rule if necessary.
 
-Example:
+  Example:
+
+    ```coffeescript
+
+    add = (num1, num2) ->
+      return num1 + num2
+
+    result = add(1, 2)
+
+    # Breaking line because string has more than 80 characters
+    # Important: Check if your spacing is right before breaking
+    string = "We performed a sum between 1 and 2 and the result
+     is #{result}"
+    ```
+
+### 4. Regarding variable writing:
+  * Variables should be written in **lowerCamelCase**;
+  * Constants should be written in **UPPERCASE** with `_` if necessary;
+  * Class names should be written in **UpperCamelCase**;
+  * **Make scope clear**, as CoffeeScript always assume the keyword `var` when a new variable is presented to avoid accidental global scoping you must be sure that your variable is declared in the right spot. Remember that CoffeeScript also always automatically declare your variable before using it if it does not found an existing variable with the same name.
+  * You should avoid unnecessary **global variables** but if you want them you should attach your variable to the `window` object in the browser or declare it on the global scope on other JS environments.
+
+Problem:
 
   ```coffeescript
+    # This is a scope problem, the logging of the foo variable
+    # will be undefined because CoffeeScript correctly defined it
+    do ->
+      foo = "bar"
 
-  add = (num1, num2) ->
-    num1 + num2
-
-  result = add 1,2
-
-  #Breaking line because string has more than 80 characters
-  string = "We performed a sum between 1 and 2 and the result
-   is #{result}"
+    console.log(foo)
   ```
 
-### 4. Use CoffeeScript peculiarities on your favor
-  * Make use of the implicit return syntax in your projects when it makes sense;
-  * When you have to pass a variable number of arguments to a function, use splats;
-  * Instead of executing simple functions in loops use object or array comprehensions;
-  * Don't use object or array comprehensions for complex stuff, it makes it hard to read;
+Solution:
+
+  ```coffeescript
+    # To solve the problem we must declare foo
+    # foo must assume a default value so CoffeeScript will
+    # declare it for us
+    foo = ""
+
+    do ->
+      foo = "bar"
+
+    # Now it's logging "bar"!
+    console.log(foo)
+  ```
+
+### 4. Regarding CoffeeScript's special features
+  * **Always return** unless it's void, do not use CoffeeScript implicit `return`;
+  * When you have to pass a **variable number of arguments** to a function, use **splats**;
+  * Instead of executing simple functions in loops use **object or array comprehensions**;
+  * **Don't** use **object or array comprehensions** for **complex stuff**, it makes it hard to read;
   * Make use of closures created with ```do``` when building your modules;
-  * Use CoffeeScript's boolean flexibility to improve readability;
+  * Use CoffeeScript's boolean flexibility to improve readability when suitable;
   * Use CoffeeScript's existential operator ```?```;
-  * Don't use commas when writing long literal array and object notations, instead, add line breaks at each node.
+  * **Don't use commas** when writing long literal array and object notations, instead, add line breaks at each node.
 
 ## About the usage of parenthesis
-  * CoffeeScript gives you the option to omit parenthesis in function calling, but sometimes this could be troublesome to write in a way that's readable. So this guide recommend you to keep writing them.
+  * CoffeeScript gives you the option to omit parenthesis on certain situations, it's OK to do it everywhere you can **but function calls**, you should call functions with **arguments surrounded by brackets**. Always.
 
 Example:
 
   ```coffeescript
-  #Using closure, you can add parameters here as well
+  # Using closure, you can add arguments here as well
   do ->
 
-    #Array declaration without commas
+    # Array declaration without commas
     pilots = [
       "Senna"
       "Alonso"
@@ -93,20 +129,23 @@ Example:
       "Barichello"
     ]
 
-    #Sample podium function, showing how you can use splats,
-    #string line breaks, string interpolation and implicit return
+    # Sample podium function, showing how you can use splats,
+    # string line breaks, string interpolation and implicit return
     podium = (fisrt, second, third, rest...) ->
       "Gold Trophy: #{first}, Silver trophy: #{silver}, Bronze trophy:
-       #{bronze}. Contenders: #{rest.join ","}"
+       #{bronze}. Contenders: #{rest.join(",")}"
 
-    #Calling a function with splats
+    # Calling a function with splats
     podium pilots...
 
-    #A more friendly aproach to boolean values.
-    #No need to use splats here, I just use to reuse the elements I
-    #already had.
+    # A more friendly approach to boolean values.
+    # No need to use splats here, I just use to reuse the elements
+    # I already had.
     didSennaWin = (first, pilots...) ->
-      if first is "Senna" then yes else no
+      if first is "Senna"
+        return yes
+      else
+        return no
   ```
 
 ### 5. Simplify complex code with classes and modules
@@ -171,7 +210,7 @@ Example:
     constructor: (brand, model, year, color) ->
       @brand = brand if brand in Car.possibleBrands
       @model = model
-      @paint color
+      @paint(color)
       @year = year if year <= Car.currentModelYear()
 
     #Instance methods
@@ -194,7 +233,7 @@ Example:
 
 ### 1. Code quality
   * Always lint your CoffeeScript code, you can use [CoffeeLint](http://www.coffeelint.org/);
-  * Do not use lint the JS generated by CoffeeScript. Instead, lint your CoffeeScript directly as said above;
+  * Do not lint the JS generated by CoffeeScript. Instead, lint your CoffeeScript directly as said above;
 
 ### 2. Write tests
   * You should write automated tests for your CoffeeScript app;
@@ -253,7 +292,7 @@ This guide is being written by [Matheus Kautzmann](https://github.com/mkautzmann
 This project is under MIT License.
 
 The MIT License (MIT)
-Copyright (c) 2014 Matheus Kautzmann
+Copyright (c) 2015 Matheus Kautzmann
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
