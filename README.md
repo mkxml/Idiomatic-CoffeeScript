@@ -3,7 +3,7 @@
 ## Purpose
 
 Idiomatic CoffeeScript is a set of best practices in CoffeeScript programming. This project is inspired
-in [Idiomatic JavaScript](https://github.com/rwldrn/idiomatic.js/) by [@rwaldron](https://github.com/rwldrn).
+in [Idiomatic JavaScript](https://github.com/rwldrn/idiomatic.js/) by [@rwldrn](https://github.com/rwldrn).
 
 This also serve as a programming style guide, which is useful for team development,
 so everyone can code in the same fashion.
