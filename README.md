@@ -305,7 +305,7 @@ Learning more about CoffeeScript is always nice. Here are listed some great reso
 
 ### Virtual courses
 
-* [Codeschool CoffeeScrip course](http://www.codeschool.com/courses/coffeescript)
+* [Codeschool CoffeeScript course](http://www.codeschool.com/courses/coffeescript)
 * [Tuts+ CoffeeScript course](https://tutsplus.com/course/cleaner-code-with-coffeescript/)
 
 ### Step by step tutorial
