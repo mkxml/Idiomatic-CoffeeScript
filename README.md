@@ -100,7 +100,7 @@ Solution:
     console.log(foo)
   ```
 
-### 4. Regarding CoffeeScript's special features
+### 5. Regarding CoffeeScript's special features
   * **Always return** unless it's void, do not use CoffeeScript implicit `return`;
   * When you have to pass a **variable number of arguments** to a function, use **splats**;
   * Instead of executing simple functions in loops use **object or array comprehensions**;
@@ -148,7 +148,7 @@ Example:
         return no
   ```
 
-### 5. Simplify complex code with classes and modules
+### 6. Simplify complex code with classes and modules
   * Use CoffeeScript classes when applicable
   * Classes create closures
   * Classes are inheritable
@@ -227,6 +227,35 @@ Example:
       else
         @airConditioner = on
 
+  ```
+
+### 7. Regarding usage of generators
+
+  * Since version 1.9.0 CoffeeScript supports ES6 generators;
+  * Use generators to create custom functions that yields series of values;
+  * Remember that CoffeeScript is just JS, so your target platform must support ES6 generators feature;
+  * Use it when it makes sense, like when you are writing a function that you would later call iterating over a specific series of values.
+
+
+Example:
+
+  ```coffeescript
+    # Creating factorial generator to later iterate on
+    factorial = ->
+      num = 0
+      result = 0
+      loop
+        result = num * result
+        if num < 2 then result = 1
+        if num is 2 then result = 2
+        num++
+        yield result
+      return
+
+    # Iterating over factorial generator
+    it = new factorial()
+    # Get factorials from 0 to 10
+    console.log(it.next()) for i in [0..10]
   ```
 
 ## Development process
