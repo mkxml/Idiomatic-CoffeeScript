@@ -1,4 +1,4 @@
-# Idiomatic CoffeeScript - Normal version
+# Idiomatic CoffeeScript - Strict version
 
 ## Purpose
 
@@ -19,7 +19,7 @@ fork this guide and customize it to fit your tools and style.
 Link this document mentioning it as the style guide for your project, so everybody know how you code.
 The styling guide should be the first thing you define in your project, after it is done everything must be based on it.
 
-You can also link directly to the [strict version](https://github.com/mkautzmann/Idiomatic-CoffeeScript/tree/strict) of this document which introduces a more strict style of writing.
+You can also link directly to the [normal version](https://github.com/mkautzmann/Idiomatic-CoffeeScript/tree/master) of this document which introduces a more permissive style of writing.
 
 ## Remember what CoffeeScript is
 
@@ -38,13 +38,14 @@ So this guide's job is to put together some tips that will help you achieve that
   * Use **2 spaces** to indent, most editors enable you to convert tabs into spaces;
   * The maximum line length is **80 characters**, long lines compromise readability;
   * **Don't** leave **trailing spaces**. Again, you editor can help with that matter;
+  * Leave **one** space after commas;
   * Use **one** blank line to separate function declarations;
   * Use **one** blank line to separate properties within a `Class`;
   * Leave **one** blank line at the **end** of the **code** in each file;
   * **Don't** use blank lines to separate lines within the same function.
 
 ### 2. Regarding string usage:
-  * Always use double quotes `"` in strings, everywhere;
+  * Use single quotes `'` in strings, but use double quotes when dealing with interpolation like `"#{myVar}"`;
   * Break long strings, respecting the 80 characters max rule, CoffeeScript supports multi-line strings;
   * Use CoffeeScript's string interpolation instead of concatenation with `+`.
 
@@ -73,6 +74,7 @@ So this guide's job is to put together some tips that will help you achieve that
   * Variables should be written in **lowerCamelCase**;
   * Constants should be written in **UPPERCASE** with `_` if necessary;
   * Class names should be written in **UpperCamelCase**;
+  * Private variables outside a specific function scope should start with `_`;
   * **Make scope clear**, as CoffeeScript always assume the keyword `var` when a new variable is presented to avoid accidental global scoping you must be sure that your variable is declared in the right spot. Remember that CoffeeScript also always automatically declare your variable before using it if it does not found an existing variable with the same name.
   * You should avoid unnecessary **global variables** but if you want them you should attach your variable to the `window` object in the browser or declare it on the global scope on other JS environments.
 
@@ -82,7 +84,7 @@ Problem:
     # This is a scope problem, the logging of the foo variable
     # will be undefined because CoffeeScript correctly defined it
     do ->
-      foo = "bar"
+      foo = 'bar'
 
     console.log(foo)
   ```
@@ -93,12 +95,12 @@ Solution:
     # To solve the problem we must declare foo
     # foo must assume a default value so CoffeeScript will
     # declare it for us
-    foo = ""
+    foo = ''
 
     do ->
-      foo = "bar"
+      foo = 'bar'
 
-    # Now it's logging "bar"!
+    # Now it's logging 'bar'!
     console.log(foo)
   ```
 
@@ -112,42 +114,36 @@ Solution:
   * Use CoffeeScript's existential operator ```?```;
   * **Don't use commas** when writing long literal array and object notations, instead, add line breaks at each node.
 
-## About the usage of parenthesis
-  * CoffeeScript gives you the option to omit parenthesis on certain situations, it's OK to do it everywhere you can **but function calls**, you should call functions with **arguments surrounded by brackets**. Always.
+#### About the usage of parenthesis
+  * CoffeeScript gives you the option to omit parenthesis on function calls, don't do that. **Explicit them**, always.
+  * CoffeeScript gives you the option to omit square brackets and braces when declaring arrays and objects, don't do that. **Explicit them**, always.
 
 Example:
 
   ```coffeescript
   # Using closure, you can add arguments here as well
   do ->
-
     # Array declaration without commas
     pilots = [
-      "Senna"
-      "Alonso"
-      "Schumacher"
-      "Vettel"
-      "Hamilton"
-      "Barichello"
+      'Senna'
+      'Alonso'
+      'Schumacher'
+      'Vettel'
+      'Hamilton'
+      'Barichello'
     ]
 
     # Sample podium function, showing how you can use splats,
-    # string line breaks, string interpolation and implicit return
+    # string line breaks, string interpolation and explicit return
     podium = (fisrt, second, third, rest...) ->
-      "Gold Trophy: #{first}, Silver trophy: #{silver}, Bronze trophy:
-       #{bronze}. Contenders: #{rest.join(",")}"
+      return "Gold Trophy: #{first}, Silver trophy: #{silver}, Bronze trophy:
+       #{bronze}. Contenders: #{rest.join(',')}"
 
     # Calling a function with splats
-    podium pilots...
+    podium(pilots...)
 
-    # A more friendly approach to boolean values.
-    # No need to use splats here, I just use to reuse the elements
-    # I already had.
     didSennaWin = (first, pilots...) ->
-      if first is "Senna"
-        return yes
-      else
-        return no
+      return first is 'Senna'
   ```
 
 ### 6. Simplify complex code with classes and modules
@@ -163,13 +159,12 @@ Example:
     Example class Car
     Author: Matheus R. Kautzmann
   ###
-
   class Car
 
     # Instance properties
 
     # Default brand
-    brand: "Other"
+    brand: 'Other'
 
     # Car start at distance 0
     distance: 0
@@ -181,23 +176,23 @@ Example:
     airConditioner: off
 
     # Color is white by default
-    color: "White"
+    color: 'White'
 
     # Class properties
 
     @possibleBrands: [
-      "Audi"
-      "Mercedes"
-      "BMW"
-      "Ferrari"
-      "Lamborghini"
-      "Volvo"
-      "Fiat"
-      "GMC"
-      "Toyota"
-      "Nissan"
-      "Renault"
-      "Other"
+      'Audi'
+      'Mercedes'
+      'BMW'
+      'Ferrari'
+      'Lamborghini'
+      'Volvo'
+      'Fiat'
+      'GMC'
+      'Toyota'
+      'Nissan'
+      'Renault'
+      'Other'
     ]
 
     # Class methods
@@ -224,10 +219,7 @@ Example:
       @color = color if color?
 
     toggleAirConditioner: ->
-      if @airConditioner
-        @airConditioner = off
-      else
-        @airConditioner = on
+      @airConditioner = !@airConditioner
 
   ```
 
@@ -335,8 +327,8 @@ This project is under MIT License.
 The MIT License (MIT)
 Copyright (c) 2015 Matheus Kautzmann
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
