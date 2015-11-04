@@ -164,24 +164,24 @@ Example:
 
   class Car
 
-    #Instance properties
+    # Instance properties
 
-    #Default brand
+    # Default brand
     brand: "Other"
 
-    #Car start at distance 0
+    # Car start at distance 0
     distance: 0
 
-    #Default year
+    # Default year
     year: 2013
 
-    #Air Conditioner is off by default
+    # Air Conditioner is off by default
     airConditioner: off
 
-    #Color is white by default
+    # Color is white by default
     color: "White"
 
-    #Class properties
+    # Class properties
 
     @possibleBrands: [
       "Audi"
@@ -198,22 +198,22 @@ Example:
       "Other"
     ]
 
-    #Class methods
+    # Class methods
 
     @currentModelYear: ->
       actualDate = new Date()
       actualYear = actualDate.getFullYear()
-      #Explicit return statement improves readability
+      # Explicit return statement improves readability
       return (actualYear + 1)
 
-    #Constructor
+    # Constructor
     constructor: (brand, model, year, color) ->
       @brand = brand if brand in Car.possibleBrands
       @model = model
       @paint(color)
       @year = year if year <= Car.currentModelYear()
 
-    #Instance methods
+    # Instance methods
 
     move: (distance) ->
       if distance? then @distance += distance
