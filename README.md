@@ -1,4 +1,4 @@
-# Idiomatic CoffeeScript
+# Idiomatic CoffeeScript - Normal version
 
 ## Purpose
 
@@ -18,6 +18,8 @@ fork this guide and customize it to fit your tools and style.
 
 Link this document mentioning it as the style guide for your project, so everybody know how you code.
 The styling guide should be the first thing you define in your project, after it is done everything must be based on it.
+
+You can also link directly to the [strict version](https://github.com/mkautzmann/Idiomatic-CoffeeScript/tree/strict) of this document which introduces a more strict style of writing.
 
 ## Remember what CoffeeScript is
 
