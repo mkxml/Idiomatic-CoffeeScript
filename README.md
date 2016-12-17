@@ -278,7 +278,7 @@ To use source maps you must enable the feature in your CoffeeScript compiler, th
 
 ### 2. Write tests
   * You should write automated tests for your CoffeeScript app;
-  * Write your tests in CoffeeScript, [Mocha](http://visionmedia.github.io/mocha/) is a good option;
+  * Write your tests in CoffeeScript, [Mocha](http://mochajs.org/) is a good option;
   * If you need a browser environment, [PhantomJS with Mocha](https://github.com/metaskills/mocha-phantomjs) is a nice option.
 
 ### 3. Compile your CoffeeScript
